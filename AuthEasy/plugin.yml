@@ -1,0 +1,79 @@
+name: AuthEasy
+main: AuthEasy\AuthEasy
+version: 1.0
+api: [1.0.0, 2.0.0, 3.0.0]
+load: STARTUP
+author: remote_vase
+description: Simple plugin that requires loging in to play on server.
+commands:
+ login:
+  description: "Logs into an account"
+  usage: "/login <password>"
+  permission: autheasy.command.login
+ register:
+  description: "Registers an account"
+  usage: "/register <password>"
+  permission: autheasy.command.register
+
+permissions:
+ autheasy:
+  default: op
+  description: "Allows using everything AuthEasy has"
+  children:
+   autheasy.chat:
+    description: "Allows using the chat while not being authenticated"
+    default: false
+   autheasy.move:
+    description: "Allows moving while not being authenticated"
+    default: true
+   autheasy.lastid:
+    description: "Allows authenticating using the last id when enabled in the config"
+    default: true
+   autheasy.command:
+    description: "Allows using AuthEasy commands"
+    default: true
+    children:
+     AuthEasy.command.register:
+      description: "Allows registering an account"
+      default: true
+     AuthEasy.command.login:
+      description: "Allows logging into an account"
+      default: true
+main: AuthEasy\Main
+load: POSTWORLD
+
+commands:
+  chpwd:
+    description: "Change password"
+    usage: "/chpwd <old_password>"
+    permission: autheasy.command.chpwd
+    aliases: [passwd]
+  resetpwd:
+    description: "Reset password"
+    usage: "/resetpwd <player>"
+    permission: autheasy.command.resetpwd
+    aliases: [resetpw]
+  preregister:
+    description: "pre-register player"
+    usage: "/preregister <player> <passwd>"
+    permission: autheasy.command.prereg
+    aliases: [prereg]
+  logout:
+    description: "logout player"
+    usage: "/logout"
+    permission: AuthEasy.command.logout
+
+permissions:
+  AuthEasy.command.chpwd:
+    default: true
+    description: "Allow users to change passwords"
+  AuthEasy.command.logout:
+    default: true
+    description: "Allow users to logout"
+  AuthEasy.command.resetpwd:
+    default: op
+    description: "Allow ops to reset other's passwords"
+  AuthEasy.command.prereg:
+    default: op
+    description: "Allow ops to pre-register users"
+

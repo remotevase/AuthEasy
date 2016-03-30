@@ -1,0 +1,27 @@
+# AuthEasy file
+
+join:
+ message1: "This server requires account registration."
+ message2: "You must authenticate to play."
+ register: "Please register by typing your password"
+ login: "Please log by typing your password"
+ popup: "You are not logged in"
+
+register:
+ usage: "Type your password"
+ description: "Registers an account"
+ permission: "You do not have permission to use the register command!"
+ error:
+  password: "Your password is too short!"
+  registered: "This account is already registered."
+  general: "Error during authentication."
+
+login:
+ usage: "Type your password"
+ description: "Logs into an account"
+ permission: "You do not have permission to use the login command!"
+ success: "You have been authenticated."
+ error:
+  password: "Incorrect password!"
+  registered: "This account is not registered."
+  block: "Too many tries!"
